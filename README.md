@@ -120,6 +120,24 @@ scope = (categoriasIncluidas ∪ proyectosIncluirSiempre)
 | Cuando una tasklist queda 100% completed, sus tasks no aparecen en listings (`/projects/{id}/tasks.json`, `/tasklists/{id}/tasks.json`, `?includeCompletedTasks=true`, `?filter=all`, etc.) — sí accesibles por id directo y en la UI bajo "Completed task lists" | Mantener cache local de IDs si hay que iterar histórico |
 | `DELETE` en bash loop con lista pre-fetchada: solo el primer call funciona, el resto devuelve HTTP 000 (connection failed) — incluso con throttling | Traer un ID por iteración del API en cada vuelta del loop, no procesar la lista completa de una |
 | Rate limit visible en header `x-ratelimit-limit: 150 / 60s` | El cliente respeta esto; un sleep 0.4s entre DELETEs es prudente |
+| `/time.json` usa `startDate`/`endDate` para filtrar por rango. `fromDate`/`toDate` se ignoran silenciosamente (devuelve todo el histórico) | Usar `startDate`/`endDate` siempre. Cliente lo respeta en `_tw_fetch_horas` |
+| Filtro `assignedToUserIds=<csv>` en `/tasks.json` NO es estricto: incluye también tasks sin asignar y con asignados fuera del csv | Filtrar client-side con jq: `select(.assigneeUserIds \| any(. as $a; $eq \| index($a)))` |
+| Filtro `createdByUserIds=<csv>` también es laxo | Filtrar client-side con `.createdByUserId == $u` |
+| `tasks[].projectId` viene `null` en respuesta directa de `/tasks.json` | Cruzar via `included.tasklists[<tasklistId>].projectId`. Cliente lo hace en `_tw_fetch_tasks_query` con `?include=tasklists` |
+| `--argjson` en jq con var grande revienta ARG_MAX en Git Bash Windows (`Argument list too long`) | Usar `--slurpfile` con tmpfile en lugar de pasar JSON inline |
+| jq < 1.7: `from_entries` NO acepta `{k, v}` shorthand. Da error críptico `Cannot use null (null) as object key` | Usar `{key, value}` explícito |
+| Emoji con variation selector (`↔️`) en `name` de proyecto via POST/PUT v1 produce mojibake | Evitar emojis en nombres; mantener ASCII + acentos |
+| `PUT /projects/{id}.json` para asignar categoría devuelve `STATUS:OK` pero la categoría puede tardar 10-30s en aparecer en `GET v1` (v3 la refleja antes) | Asumir éxito si STATUS:OK; verificar via v3, no v1 |
+
+## Reportes implementados (`lib/tw-reports.sh`)
+
+| Función | Output |
+|---------|--------|
+| `tw_report_semanal [YYYY-MM-DD]` | `reports/<hoy>/semanal-equipo.md` — cerrados / nuevos / horas, agrupado por persona y por proyecto. Sin arg: última semana lun-dom cerrada |
+| `tw_report_wip [YYYY-MM-DD]` | `reports/<hoy>/wip.md` — snapshot diario, activos por persona con flags `[STALE Nd]` (>7d sin update) y `[BLQ]` (tag bloqueado/bloqueada) |
+| `tw_report_mis_tickets [YYYY-MM-DD]` | `reports/<hoy>/mis-tickets.md` — vencidos, due 3d, asignados a mí, creados por mí (asignados a otros). Lee `responsable.id` de `equipo.json` |
+
+Sourcing: `source lib/tw-reports.sh` → cliente HTTP se carga solo.
 
 ## Comandos del skill (planificados)
 
