@@ -70,25 +70,44 @@ tw_get_v1() {
   curl -s -u "$TW_AUTH" "$TW_V1$path" -H "Accept: application/json"
 }
 
+# Las escrituras con acentos requieren --data-binary @archivo + charset utf-8.
+# Si se pasa un string a -d directamente, Git Bash en Windows pierde los caracteres
+# no-ASCII. Por eso siempre escribimos a un tmpfile UTF-8 y mandamos --data-binary.
+_tw_send() {
+  local method="$1" url="$2" body="$3"
+  local tmp; tmp=$(mktemp -t tw-body-XXXXXX.json)
+  printf '%s' "$body" > "$tmp"
+  curl -s -u "$TW_AUTH" -X "$method" "$url" \
+    -H "Content-Type: application/json; charset=utf-8" \
+    --data-binary "@$tmp"
+  local rc=$?
+  rm -f "$tmp"
+  return $rc
+}
+
 tw_post_v1() {
   local path="$1" body="$2"
-  curl -s -u "$TW_AUTH" -X POST "$TW_V1$path" \
-    -H "Content-Type: application/json" \
-    -d "$body"
+  _tw_send POST "$TW_V1$path" "$body"
 }
 
 tw_put_v1() {
   local path="$1" body="$2"
-  curl -s -u "$TW_AUTH" -X PUT "$TW_V1$path" \
-    -H "Content-Type: application/json" \
-    -d "$body"
+  _tw_send PUT "$TW_V1$path" "$body"
+}
+
+tw_post_v3() {
+  local path="$1" body="$2"
+  _tw_send POST "$TW_V3$path" "$body"
 }
 
 tw_put_v3() {
   local path="$1" body="$2"
-  curl -s -u "$TW_AUTH" -X PUT "$TW_V3$path" \
-    -H "Content-Type: application/json" \
-    -d "$body"
+  _tw_send PUT "$TW_V3$path" "$body"
+}
+
+tw_patch_v3() {
+  local path="$1" body="$2"
+  _tw_send PATCH "$TW_V3$path" "$body"
 }
 
 # Pagina sobre /v3 hasta agotar y concatena las entradas de la clave indicada.

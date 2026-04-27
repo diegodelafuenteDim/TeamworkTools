@@ -1,0 +1,483 @@
+[
+  {
+    "tasklist": "Fundación / Deploy",
+    "title": "Setup inicial Llamador Web (Next.js, Docker, video sync)",
+    "start": "20260213", "due": "20260214",
+    "repo": "LlamadorNew",
+    "summary": "Setup inicial del frontend del llamador en Next.js 16 con Docker, integración con el repositorio centralizado de videos (VR), Piper TTS multi-voz, manifiestos para video sync, layout export/import, weather, manual de usuario y reorganización a monorepo.",
+    "commits": [
+      ["1a8cad9", "2026-02-13", "Initial commit: Llamador de Turnos Web (Next.js 16)"],
+      ["4cd9bb9", "2026-02-13", "Add Docker + Piper TTS multi-voice and improve patient card UI"],
+      ["dc493ff", "2026-02-13", "Connect to production API and fix autoplay/audio issues"],
+      ["8634e46", "2026-02-13", "Reorganize to monorepo structure and add video sync"],
+      ["4b299b9", "2026-02-13", "Add video repository integration, play tracking, heartbeat and update README"],
+      ["18938b7", "2026-02-14", "Add export/import layout, weather date/time, vertical grid columns, stale call filter and user manual"],
+      ["508fef7", "2026-02-14", "Fix manual page scroll by overriding kiosk overflow:hidden"]
+    ]
+  },
+  {
+    "tasklist": "Fundación / Deploy",
+    "title": "Deploy producción: Docker + nginx reverse proxy + SSL",
+    "start": "20260214", "due": "20260214",
+    "repo": "VideoRepository",
+    "summary": "Configuración de despliegue a producción con Docker Compose, nginx como reverse proxy y certificado SSL.",
+    "commits": [
+      ["df57bc9", "2026-02-14", "Add production deploy config: Docker, nginx reverse proxy with SSL"]
+    ]
+  },
+  {
+    "tasklist": "Sincronización centralizada (config-sync)",
+    "title": "Config sync centralizado VR ↔ Llamador",
+    "start": "20260218", "due": "20260311",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Sincronización centralizada de configuración entre el VR (admin) y los llamadores: el llamador toma su config del VR (config-sync), reporta su config actual (reportedConfig), edición local bloqueada cuando hay config centralizada activa, scheduled backups y user roles. Incluye actualizaciones del manual con la documentación de config sync.",
+    "commits": [
+      ["b482dc3", "2026-02-18", "Add config sync, scheduled backups, user roles and reported config import (VR)"],
+      ["60deaff", "2026-02-18", "Add config sync, setup modal, Piper TTS, reported config and Docker improvements (LL)"],
+      ["a9f4cf5", "2026-02-19", "Update manuals with central config docs, badge indicators and refresh all screenshots (VR)"],
+      ["c708e6c", "2026-03-11", "feat(config-sync): bloqueo de edición local cuando config centralizada activa (LL)"],
+      ["b31ba5d", "2026-03-11", "fix(config-sync): auto-sync inmediato, reportedConfig completo y sync cada 60s (LL)"]
+    ]
+  },
+  {
+    "tasklist": "Llamadores: ABM y configuración",
+    "title": "Edit modal con tabs Datos / Configuración + device identity + URL repositorio",
+    "start": "20260311", "due": "20260312",
+    "repo": "VideoRepository",
+    "summary": "Reorganización del modal de edición de llamadores con tabs separadas (Datos / Configuración), agregado del campo urlRepositorio, mostrar device identity fields, fixes de UUID upsert y mejoras en la grilla.",
+    "commits": [
+      ["8cb5528", "2026-03-11", "feat(llamadores): reorganize edit modal with Datos/Configuracion tabs"],
+      ["732ccb1", "2026-03-11", "fix(llamadores): fix UUID upsert conflict, config field naming and grid UX"],
+      ["55b3d67", "2026-03-11", "style(llamadores): show 'Sin playlist' in red for better visibility"],
+      ["ae4fa4c", "2026-03-12", "feat(llamadores): add urlRepositorio config field and clarify sync interval default"],
+      ["e9f82a9", "2026-03-12", "feat(llamadores): show device identity fields in edit modal + misc fixes"],
+      ["27041bf", "2026-03-12", "fix: non-null assertion on data.uuid in conflict log"]
+    ]
+  },
+  {
+    "tasklist": "Llamadores: ABM y configuración",
+    "title": "Config presets por layout/resolución + auto-import",
+    "start": "20260313", "due": "20260313",
+    "repo": "VideoRepository",
+    "summary": "Sistema de config presets que aplican automáticamente combinaciones de configuración según el layout y la resolución del llamador. Incluye design doc, plan de implementación e implementación.",
+    "commits": [
+      ["a204551", "2026-03-13", "docs: add config presets design for llamadores"],
+      ["738b800", "2026-03-13", "docs: add config presets implementation plan"],
+      ["96e9f15", "2026-03-13", "feat(presets): config presets by layout/resolution + auto-import"]
+    ]
+  },
+  {
+    "tasklist": "Llamadores: ABM y configuración",
+    "title": "Drag & drop upload de videos + status thresholds + dashboard compact",
+    "start": "20260313", "due": "20260314",
+    "repo": "VideoRepository",
+    "summary": "Carga de videos por drag&drop, ajuste de thresholds de estado del llamador (3min/5min para alertas), vista compacta del dashboard y manual v2.0 con screenshots actualizados.",
+    "commits": [
+      ["a17bad9", "2026-03-13", "feat: dashboard compact view + manual v2.0 with screenshots"],
+      ["2a3c061", "2026-03-14", "feat: drag & drop upload, status thresholds 3/5min, v2.0"]
+    ]
+  },
+  {
+    "tasklist": "Llamadores: ABM y configuración",
+    "title": "DialogProvider + mejoras de UI globales",
+    "start": "20260305", "due": "20260420",
+    "repo": "VideoRepository",
+    "summary": "Reemplazo de alert/confirm nativos por DialogProvider para una UX consistente, fix del watermark de AG-Grid (license a nivel de módulo), eliminación del botón 'Limpiar todo', mejoras del sidebar footer, anchos de columnas, theme density y formateo de duración sin decimales.",
+    "commits": [
+      ["6812817", "2026-03-05", "fix(ag-grid): set license at module level to prevent trial watermark"],
+      ["70a7b10", "2026-03-13", "feat: replace native alert/confirm with DialogProvider + UI improvements"],
+      ["b061fe4", "2026-03-13", "fix(ui): remove 'Limpiar todo' button, improve sidebar footer"],
+      ["d2a15ac", "2026-03-14", "fix: llamadores grid column widths, compact theme density, docker_cache_id direct linking"],
+      ["44866f3", "2026-04-20", "fix(ui): duracion sin decimales y columnas secundaria/playlist/tv ocultas por defecto"]
+    ]
+  },
+  {
+    "tasklist": "Cartelera (digital signage)",
+    "title": "Modo cartelera (digital signage) + toggles habilitado clima/marquee",
+    "start": "20260314", "due": "20260323",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Soporte para modo cartelera (digital signage) además del modo llamador: panel de configuración simplificado, toggles para habilitar/deshabilitar secciones (clima, marquee), forzar tipo llamador en setup inicial sin selector de cartelera y separar carteleras de llamadores en el dashboard del VR.",
+    "commits": [
+      ["dbdbbc3", "2026-03-14", "feat: cartelera mode support and fix boolean defaultValue in config editor (VR)"],
+      ["d1d166a", "2026-03-14", "feat: add cartelera (digital signage) mode and simplified config panel (LL)"],
+      ["01ef023", "2026-03-14", "feat: add habilitado toggle for clima and marquee sections (LL)"],
+      ["11964c8", "2026-03-23", "feat(setup): forzar tipo llamador en setup inicial, sin selector de cartelera (LL)"]
+    ]
+  },
+  {
+    "tasklist": "TTS / Voces",
+    "title": "Soporte Piper TTS y configuración multi-voz",
+    "start": "20260305", "due": "20260314",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Configuración centralizada de Piper TTS desde YAML/panel, síntesis in-memory con cache de voces para mejorar performance, voice select field en el panel de config y agregado de los campos ttsProvider/ttsUrl al config centralizado de voz.",
+    "commits": [
+      ["7fa4cbe", "2026-03-05", "feat(config): add ttsProvider and ttsUrl fields to centralized voz config (VR)"],
+      ["c2c311b", "2026-03-05", "perf(piper): síntesis in-memory con cache de voces (LL)"],
+      ["e9cc268", "2026-03-05", "feat(tts): configurable TTS provider from YAML/panel (LL)"],
+      ["ac4d2d3", "2026-03-14", "feat(config-panel): add voice select field, TTS voices API, and docs (LL)"]
+    ]
+  },
+  {
+    "tasklist": "TTS / Voces",
+    "title": "Soporte Amazon Polly TTS con engine fallback",
+    "start": "20260218", "due": "20260314",
+    "repo": "LlamadorNew",
+    "summary": "Integración con Amazon Polly como segundo proveedor TTS, con fallback automático entre engines (neural / standard) y opciones de voces Piper. Fixes de errores de Web Speech API.",
+    "commits": [
+      ["344e1cc", "2026-02-18", "Add Amazon Polly TTS support, Piper voice options and fix Web Speech API errors"],
+      ["410cf8a", "2026-03-14", "fix(tts): try multiple Polly engines with fallback"],
+      ["89d3060", "2026-03-14", "fix(tts): add Polly engine fallback, remove unused intervaloSyncMinutos"]
+    ]
+  },
+  {
+    "tasklist": "TTS / Voces",
+    "title": "Voice preview unificado y engine fallback",
+    "start": "20260314", "due": "20260314",
+    "repo": "VideoRepository",
+    "summary": "Sistema unificado de preview de voz que funciona con todos los proveedores (Piper, Polly), eliminación del intervalo de sync no usado y fallback de engine ante errores.",
+    "commits": [
+      ["6b00db6", "2026-03-14", "feat(tts): unified voice preview, engine fallback, remove unused sync interval"]
+    ]
+  },
+  {
+    "tasklist": "TTS / Voces",
+    "title": "Soporte Azure Speech Service como cuarto proveedor TTS",
+    "start": "20260321", "due": "20260321",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Integración con Azure Speech Service como cuarto proveedor TTS, agregado de las voces Azure al selector de llamadores y al preview unificado.",
+    "commits": [
+      ["9a0733d", "2026-03-21", "feat: add Azure Speech Service as TTS provider (VR)"],
+      ["7830d73", "2026-03-21", "feat(tts): agregar voces Azure al selector de llamadores y preview unificado (VR)"],
+      ["956bb6c", "2026-03-21", "feat: add Azure Speech Service as 4th TTS provider (LL)"]
+    ]
+  },
+  {
+    "tasklist": "TTS / Voces",
+    "title": "Modo silencioso con voz completa y animación de tarjeta",
+    "start": "20260314", "due": "20260318",
+    "repo": "LlamadorNew",
+    "summary": "Modo silencioso (sin sonido) que igualmente reproduce la voz completa cuando está habilitado por config, con animación mejorada de la tarjeta del paciente.",
+    "commits": [
+      ["b2e86a5", "2026-03-14", "feat: add silent calling mode (modo silencioso)"],
+      ["08eb779", "2026-03-18", "feat(llamador): voz completa en modo silencioso y animación de tarjeta mejorada"]
+    ]
+  },
+  {
+    "tasklist": "TTS / Voces",
+    "title": "TTS segmentado con cache + detección de proveedor por voz",
+    "start": "20260319", "due": "20260319",
+    "repo": "LlamadorNew",
+    "summary": "Síntesis TTS segmentada por frase con cache de audio, detección automática del proveedor TTS según la voz seleccionada y fix del auto-registro de cache.",
+    "commits": [
+      ["d0fc0d4", "2026-03-19", "feat(tts): TTS segmentado con cache, detección de proveedor por voz, fix auto-registro cache"]
+    ]
+  },
+  {
+    "tasklist": "TTS / Voces",
+    "title": "Modo texto completo opcional por llamador",
+    "start": "20260420", "due": "20260420",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Toggle por llamador para procesar el texto completo del llamado (en lugar del fragmento) y configuración correspondiente en el panel del VR.",
+    "commits": [
+      ["1fad5a9", "2026-04-20", "feat(voz): toggle procesar texto completo por llamador (VR)"],
+      ["0bec0de", "2026-04-20", "feat(tts): modo texto completo opcional por llamador (LL)"]
+    ]
+  },
+  {
+    "tasklist": "Multi-TV / Android TV",
+    "title": "Identidad por TV via query params (Smart TV / multi-puesto)",
+    "start": "20260304", "due": "20260312",
+    "repo": "LlamadorNew",
+    "summary": "Soporte multi-TV: identidad por puesto/TV via query params en SetupActivity para deployar varios llamadores en un mismo Smart TV. Incluye los campos de identidad en reportedConfig y fallback de crypto.randomUUID para WebView en HTTP inseguro.",
+    "commits": [
+      ["9cc35a3", "2026-03-04", "Add multi-TV puesto identity for Smart TV deployment"],
+      ["85a2728", "2026-03-12", "fix(device-id): fallback crypto.randomUUID para WebView HTTP inseguro"],
+      ["ec749db", "2026-03-12", "feat(multi-tv): identidad por TV via query params en SetupActivity"],
+      ["f42634e", "2026-03-12", "feat(video-status): incluir campos de identidad en reportedConfig"]
+    ]
+  },
+  {
+    "tasklist": "Multi-TV / Android TV",
+    "title": "Android TV WebView wrapper + launcher icon",
+    "start": "20260312", "due": "20260312",
+    "repo": "LlamadorNew",
+    "summary": "App nativa Android TV que envuelve el llamador web en un WebView, con icono de megáfono como launcher y banner para la grilla de TV.",
+    "commits": [
+      ["bfa8598", "2026-03-12", "feat(android-tv): app WebView wrapper para Android TV"],
+      ["0673451", "2026-03-12", "feat(apk): add megaphone launcher icon and TV banner"]
+    ]
+  },
+  {
+    "tasklist": "Multi-TV / Android TV",
+    "title": "Cache de config por llamador en multi-TV (anti cross-contamination)",
+    "start": "20260314", "due": "20260314",
+    "repo": "LlamadorNew",
+    "summary": "Cache de configuración por llamador para evitar cross-contamination entre puestos cuando varios llamadores corren en el mismo container multi-TV.",
+    "commits": [
+      ["e520659", "2026-03-14", "fix: per-llamador config cache to prevent cross-contamination in multi-TV containers"]
+    ]
+  },
+  {
+    "tasklist": "Multi-TV / Android TV",
+    "title": "Reportar resolución y orientación de pantalla en video-status",
+    "start": "20260313", "due": "20260313",
+    "repo": "LlamadorNew",
+    "summary": "Agregado de la resolución y la orientación de pantalla al reporte video-status para que el VR pueda decidir presets y diagnosticar layout.",
+    "commits": [
+      ["21444a7", "2026-03-13", "feat: report screen resolution and orientation in video-status"]
+    ]
+  },
+  {
+    "tasklist": "Servicios externos centralizados",
+    "title": "Centralización de servicios externos (clima, voz) desde VR Central",
+    "start": "20260314", "due": "20260314",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Centralización de la configuración de servicios externos (clima y voz) desde el VR Central. El llamador consume la config centralizada en lugar de tener su propia config local. Incluye design doc y plan, simplificación del config de weather, voice preview Polly y limpieza de la DB de weather.",
+    "commits": [
+      ["86db636", "2026-03-14", "docs: add external services centralization design and implementation plan (VR)"],
+      ["811e23c", "2026-03-14", "feat(services): centralized external services configuration (VR)"],
+      ["829d0bb", "2026-03-14", "fix(services): simplify weather config, improve test error handling (VR)"],
+      ["ff466b8", "2026-03-14", "fix(services): all Spanish voices in test, save confirmation, clean weather DB (VR)"],
+      ["7ba1b28", "2026-03-14", "feat(services): voice preview for Polly, remove weather test button (VR)"],
+      ["e9f7890", "2026-03-14", "feat(services): use centralized external services config from VR Central (LL)"]
+    ]
+  },
+  {
+    "tasklist": "Repositorio de Videos",
+    "title": "Cliente field en videos + manual",
+    "start": "20260315", "due": "20260315",
+    "repo": "VideoRepository",
+    "summary": "Agregado del campo Cliente a los videos del repositorio para identificar a quién corresponde cada video, con actualización del manual y screenshots.",
+    "commits": [
+      ["f78c0d3", "2026-03-15", "feat: add Cliente field to videos, update manual and screenshots"]
+    ]
+  },
+  {
+    "tasklist": "Repositorio de Videos",
+    "title": "ABM Clientes + reporte por cliente + edición inline",
+    "start": "20260323", "due": "20260423",
+    "repo": "VideoRepository",
+    "summary": "ABM completo de Clientes con FK desde videos, reporte por cliente con horas y duración, y edición inline del cliente directamente en la fila de la grilla de videos. Incluye design doc y plan.",
+    "commits": [
+      ["673ba7a", "2026-03-23", "docs: diseño ABM clientes y reporte por cliente"],
+      ["f659eb0", "2026-03-23", "docs: plan de implementacion ABM clientes y reporte por cliente"],
+      ["cf1e5e0", "2026-03-23", "feat(clientes): ABM de clientes, vincular videos por FK y reporte por cliente"],
+      ["63af772", "2026-04-23", "feat(videos): edicion inline de cliente por fila en la grilla"]
+    ]
+  },
+  {
+    "tasklist": "Docker caches",
+    "title": "Arquitectura de docker caches (VR Central + cache nodes)",
+    "start": "20260313", "due": "20260313",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Arquitectura de docker caches para acelerar el video-sync: nodos cache que descargan videos del VR Central y los sirven localmente a los llamadores. Incluye design doc, plan (15 tasks), endpoints públicos en VR, llamador linking en el dashboard, cache worker para heartbeat y video sync, backend proxy y per-TV urlRepositorio override.",
+    "commits": [
+      ["c27cb80", "2026-03-13", "docs: add docker caches architecture design (VR)"],
+      ["3d7a218", "2026-03-13", "docs: add docker caches implementation plan (15 tasks) (VR)"],
+      ["9052651", "2026-03-13", "feat(docker-caches): add VR Central support for docker cache nodes (VR)"],
+      ["cfc59ee", "2026-03-13", "fix(docker-caches): public API endpoints, llamador linking, dashboard UI (VR)"],
+      ["1447ed3", "2026-03-13", "feat: backend proxy, periodic video-sync, per-TV urlRepositorio override (LL)"],
+      ["735ca2c", "2026-03-13", "feat(docker-caches): add cache worker for heartbeat and video sync (LL)"],
+      ["03ea476", "2026-03-13", "fix(video-sync): skip orphan cleanup when cache-worker is active (LL)"]
+    ]
+  },
+  {
+    "tasklist": "Docker caches",
+    "title": "Bloquear cache self-registration como llamador",
+    "start": "20260317", "due": "20260317",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Bloqueo en VR y LL para que los nodos cache no puedan auto-registrarse como llamadores (evita confusión en el dashboard y métricas duplicadas).",
+    "commits": [
+      ["c7ae9c3", "2026-03-17", "fix: manual layout config, block cache self-registration as llamador (VR)"],
+      ["4f14a19", "2026-03-17", "fix: block cache self-registration as llamador device (LL)"]
+    ]
+  },
+  {
+    "tasklist": "Estadísticas y Reportes",
+    "title": "Tracking de plays + admin delete trace + filtro de día",
+    "start": "20260312", "due": "20260420",
+    "repo": "VideoRepository",
+    "summary": "Funcionalidad para que un admin pueda eliminar trazas de reproducción de videos, permitir delete sin tener que seleccionar llamadores y filtro por día actual por defecto en estadísticas.",
+    "commits": [
+      ["3272a25", "2026-03-12", "feat(estadisticas): add admin delete trace functionality"],
+      ["f945332", "2026-03-12", "fix(estadisticas): allow delete video plays without selecting llamadores"],
+      ["ba924b7", "2026-04-20", "fix(estadisticas): filtrar por dia de hoy por defecto"]
+    ]
+  },
+  {
+    "tasklist": "Estadísticas y Reportes",
+    "title": "Reportes con JOIN por filename y descripción + duración estable",
+    "start": "20260424", "due": "20260424",
+    "repo": "VideoRepository",
+    "summary": "Reporte por cliente leyendo data.detail (no data.rows), JOIN por filename para sumar plays sin perder reproducciones, descripción como label y duración estable tomada del catálogo de videos.",
+    "commits": [
+      ["7db3c2d", "2026-04-24", "fix(reportes): leer data.detail en lugar de data.rows en reporte por cliente"],
+      ["b0a1a80", "2026-04-24", "fix(reportes,estadisticas): JOIN por filename, descripcion como label y duracion estable desde catalogo"]
+    ]
+  },
+  {
+    "tasklist": "Auditoría",
+    "title": "Audit log completo con admin UI",
+    "start": "20260314", "due": "20260314",
+    "repo": "VideoRepository",
+    "summary": "Sistema completo de audit log: design doc, implementación con admin UI, fixes de la grid y actualización del manual. Permite trazar cambios de configuración y operaciones administrativas.",
+    "commits": [
+      ["bdae639", "2026-03-14", "docs: add audit log design document"],
+      ["f5adc99", "2026-03-14", "feat(audit): complete audit log system with admin UI, grid fixes, and manual update"]
+    ]
+  },
+  {
+    "tasklist": "Seguridad",
+    "title": "JWT refresh tokens + revocación instantánea + validación de formato de video",
+    "start": "20260320", "due": "20260320",
+    "repo": "VideoRepository",
+    "summary": "Implementación de JWT refresh tokens con revocación instantánea de sesión (blacklist) y validación del formato de los videos al uploadear (mp4, etc.).",
+    "commits": [
+      ["26de657", "2026-03-20", "feat: JWT refresh tokens, instant session revocation, video format validation"]
+    ]
+  },
+  {
+    "tasklist": "Dashboard de monitoreo",
+    "title": "Detector de stall de video + campana de alertas global + auto-refresh + device info",
+    "start": "20260420", "due": "20260421",
+    "repo": "VideoRepository",
+    "summary": "Detector de stall de video que dispara alertas en el dashboard, campana de alertas global con notificaciones del estado del parque, toggle de auto-refresh con contador y captura/visualización del device info de cada llamador.",
+    "commits": [
+      ["da0214d", "2026-04-20", "feat(dashboard): detector de stall de video y alertas en dashboard"],
+      ["c4fb70d", "2026-04-20", "feat(dashboard): capturar y mostrar device info de cada llamador"],
+      ["e5eb837", "2026-04-21", "feat(dashboard): campana de alertas global y toggle de auto-refresh con contador"]
+    ]
+  },
+  {
+    "tasklist": "Dashboard de monitoreo",
+    "title": "Tipo dispositivo + separar llamadores y carteleras + audit logging de config",
+    "start": "20260314", "due": "20260314",
+    "repo": "VideoRepository",
+    "summary": "Columna tipo_dispositivo en la grilla, separación visual entre llamadores y carteleras en el dashboard y audit logging de los cambios de configuración.",
+    "commits": [
+      ["9efdb69", "2026-03-14", "feat: tipo_dispositivo column, audit logging for config changes"],
+      ["2046fcf", "2026-03-14", "feat: separate llamadores and carteleras in dashboard"]
+    ]
+  },
+  {
+    "tasklist": "Estabilidad: Watchdog y Telemetría",
+    "title": "Watchdog client-side con recuperación escalada + telemetría de eventos al VR",
+    "start": "20260420", "due": "20260421",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Watchdog client-side en el llamador que detecta cuelgues del video y aplica recuperación escalada (resume → reload video → reload página). Reporta eventos de watchdog al VR via sendBeacon, además de device info (OS, modelo, versión Chrome) en cada heartbeat. En VR: nueva columna watchdog en el dashboard, endpoint público para recibir eventos y exposición vía middleware.",
+    "commits": [
+      ["520c9dc", "2026-04-20", "feat(video): watchdog client-side con recuperacion escalada ante cuelgues (LL)"],
+      ["e47f83e", "2026-04-20", "feat(telemetry): reportar device info en heartbeat al VR (LL)"],
+      ["4a8d3aa", "2026-04-21", "feat(telemetry): columna watchdog y endpoint para recibir eventos del cliente (VR)"],
+      ["9254fb6", "2026-04-21", "fix(middleware): exponer endpoint de watchdog-event como publico (VR)"],
+      ["f47790d", "2026-04-21", "feat(watchdog): telemetria de eventos al VR con sendBeacon (LL)"],
+      ["9dcdd16", "2026-04-21", "feat(device-info): extraer OS, modelo, version Chrome desde user-agent (LL)"],
+      ["394d476", "2026-04-21", "fix(watchdog): re-atachar listener timeupdate en cada cambio de video (LL)"]
+    ]
+  },
+  {
+    "tasklist": "Estabilidad: Watchdog y Telemetría",
+    "title": "Detección de hardware inestable + tabla watchdog_events + badge en dashboard",
+    "start": "20260421", "due": "20260421",
+    "repo": "VideoRepository",
+    "summary": "Tabla watchdog_events con contador por llamador, badge de hardware inestable en el dashboard cuando supera un umbral y manual con la sección de columna estabilidad y detección de hardware problemático.",
+    "commits": [
+      ["8b2b5b2", "2026-04-21", "feat(estabilidad): tabla watchdog_events, contador por llamador y badge de hardware inestable"]
+    ]
+  },
+  {
+    "tasklist": "Versionado / auto-reload",
+    "title": "Endpoint version + force-reload de llamadores y caches",
+    "start": "20260420", "due": "20260420",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Endpoint /version en el llamador, auto-reload del cliente cuando cambia la versión, llamado repetido sin modal de error y reporte de versión al VR. Desde VR: botón force-reload de llamadores y caches.",
+    "commits": [
+      ["47a3d03", "2026-04-20", "feat(versionado): reportar version y force-reload de llamadores/caches (VR)"],
+      ["a61e8a1", "2026-04-20", "feat(versionado): endpoint version, auto-reload, reporte a VR y llamado repetido sin modal (LL)"]
+    ]
+  },
+  {
+    "tasklist": "Llamados",
+    "title": "Deduplicación de llamados repetidos + duración correcta",
+    "start": "20260409", "due": "20260420",
+    "repo": "LlamadorNew",
+    "summary": "Deduplicación de llamados repetidos para evitar que se anuncien dos veces, re-animación de tarjetas existentes (mismo paciente vuelto a llamar), key por identidad para evitar re-animación espuria y corrección de la duración reportada descontando las pausas por llamados.",
+    "commits": [
+      ["097e81a", "2026-04-09", "feat(llamador): deduplicar llamados repetidos y re-animar tarjetas existentes"],
+      ["817345c", "2026-04-09", "fix(video): corregir duracion reportada descontando pausas por llamados"],
+      ["1323cde", "2026-04-20", "fix(tarjetas): usar key por identidad para evitar re-animacion espuria"]
+    ]
+  },
+  {
+    "tasklist": "Video sync",
+    "title": "Video sync: carpeta plana con manifiestos + fixes",
+    "start": "20260305", "due": "20260420",
+    "repo": "LlamadorNew",
+    "summary": "Refactor de video-sync para usar una carpeta plana con manifiestos (compartir videos entre llamadores), fixes de subcarpeta por llamador, sync timeouts con progress, hash cache optimization, video playlist loop fix e ignorar tandaVideo local cuando se usa repositorio central.",
+    "commits": [
+      ["84d425d", "2026-03-05", "Fix video playlist loop, sync timeouts with progress, hash cache optimization"],
+      ["2e25d2b", "2026-03-11", "fix(video-sync): subcarpeta por llamador y no sobreescribir nombreLlamador desde puesto"],
+      ["3078b82", "2026-03-11", "refactor(video-sync): carpeta plana con manifiestos para compartir videos entre llamadores"],
+      ["49d9837", "2026-04-20", "fix(video): ignorar tandaVideo local cuando usarRepositorioCentral"]
+    ]
+  },
+  {
+    "tasklist": "Ventanas de trabajo / Feriados",
+    "title": "Sistema de horarios y feriados con monitoreo condicional",
+    "start": "20260424", "due": "20260424",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Sistema completo: tablas de DB de horarios y feriados, flags de monitoreo por llamador, lógica isLlamadorEnVentana con enriquecimiento del API, stall detector y campana respetando ventana de trabajo, editor de horarios reutilizable con endpoints/UI por ubicación, CRUD de feriados con overrides por centro, toggle monitorear y horario propio en llamadores con endpoint update, dashboard que diferencia fuera-horario vs no-monitoreado, y bump del manual a v2.4. En LL: quitar heartbeat externo (ahora lo monitorea el VR) y bump 2.5.0.",
+    "commits": [
+      ["e270076", "2026-04-24", "docs: diseno y plan de implementacion ventanas de trabajo (VR)"],
+      ["ecb80e5", "2026-04-24", "feat(db): tablas de horarios, feriados y flags de monitoreo en llamadores (VR)"],
+      ["e6a0552", "2026-04-24", "feat(ventana): logica isLlamadorEnVentana y enriquecimiento del API (VR)"],
+      ["d9caf39", "2026-04-24", "feat(monitoreo): stall detector y campana respetan ventana de trabajo (VR)"],
+      ["eab231f", "2026-04-24", "feat(horarios): editor reutilizable y endpoints/UI por ubicacion (VR)"],
+      ["c3759ef", "2026-04-24", "feat(feriados): CRUD, overrides por centro, pagina y nav item (VR)"],
+      ["ff3fcb2", "2026-04-24", "feat(llamadores): toggle monitorear, horario propio y endpoint update (VR)"],
+      ["ae38a49", "2026-04-24", "fix(dashboard): quitar estados de cache del badge del llamador y diferenciar fuera-horario vs no-monitoreado (VR)"],
+      ["2d08a51", "2026-04-24", "docs(manual): secciones feriados, ventanas de trabajo y bump v2.4 (VR)"],
+      ["7ced93d", "2026-04-24", "feat(llamador): quitar heartbeat externo (lo monitorea el VR) y bump 2.5.0 (LL)"]
+    ]
+  },
+  {
+    "tasklist": "Manual de usuario",
+    "title": "Actualizaciones consolidadas del manual de usuario",
+    "start": "20260219", "due": "20260421",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Actualizaciones evolutivas del manual de usuario a lo largo del proyecto: badges de config-sync, refresh de screenshots, sección campana de alertas, sección auto-refresh, columnas actualizadas, columna estabilidad, alerta inestable y detección de hardware problemático.",
+    "commits": [
+      ["70d9288", "2026-02-19", "Update llamador manual with config-sync badges and refresh screenshots (LL)"],
+      ["073f347", "2026-04-21", "docs(manual): campana de alertas, auto-refresh, secciones nuevas y columnas actualizadas (VR)"],
+      ["dc8906d", "2026-04-21", "docs(manual): columna estabilidad, alerta inestable y deteccion de hardware problematico (VR)"]
+    ]
+  },
+  {
+    "tasklist": "Chore / Deploy multi-servidor",
+    "title": "Skills, deploy multi-servidor y jumphost",
+    "start": "20260219", "due": "20260421",
+    "repo": "VideoRepository + LlamadorNew",
+    "summary": "Tareas de chore: agregar skills de Claude Code al repo, ignorar archivos .code-workspace, script de video manual, deploy artifacts gitignore, credenciales externas y soporte multi-servidor, skill de deploy con jumphost y bump obligatorio de versión, bump 2.4.4.",
+    "commits": [
+      ["4620df7", "2026-02-19", "Add deploy artifacts to .gitignore (LL)"],
+      ["278df30", "2026-03-05", "chore: agregar script de video manual y dependencias de desarrollo (LL)"],
+      ["58b8d7d", "2026-03-20", "chore: agregar skills a git, limpiar scripts obsoletos (VR)"],
+      ["7faadba", "2026-03-20", "chore: ignorar archivos .code-workspace (VR)"],
+      ["079eecd", "2026-03-20", "chore: agregar skills a git (LL)"],
+      ["57a99ae", "2026-04-09", "chore(deploy): credenciales externas y soporte multi-servidor (LL)"],
+      ["deb8d55", "2026-04-20", "docs(skill): bump de version obligatorio antes de build (LL)"],
+      ["770b61b", "2026-04-21", "chore: bump 2.4.4 y skill deploy con jumphost y bump obligatorio (LL)"]
+    ]
+  },
+  {
+    "tasklist": "API: Logging condicional",
+    "title": "Logging de IP y User-Agent con flag debug",
+    "start": "20260312", "due": "20260312",
+    "repo": "LlamadorNew",
+    "summary": "Logging de IP y User-Agent en endpoints API, condicionado a un flag debug en configuracion.yml para no inflar logs en producción.",
+    "commits": [
+      ["9698a4a", "2026-03-12", "feat(api): agregar logging de IP y User-Agent en endpoints API"],
+      ["aa6d1b4", "2026-03-12", "refactor(api): condicionar logging a flag debug en configuracion.yml"]
+    ]
+  }
+]

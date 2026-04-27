@@ -115,6 +115,11 @@ scope = (categoriasIncluidas ∪ proyectosIncluirSiempre)
 | Asignar categoría a un proyecto: la lectura inmediata muestra `null`; recién en una segunda lectura aparece el cambio | Asumir éxito si STATUS:OK, no verificar inline |
 | JSON de proyectos tiene claves duplicadas (`customfieldValues` / `customFieldValues`) | jq las maneja bien; PowerShell 5.1 ConvertFrom-Json no — usar jq siempre |
 | Mojibake al imprimir UTF-8 desde la consola Windows | jq output a archivo y leerlo, o forzar `chcp 65001` |
+| Strings con acentos via `-d "..."` desde Git Bash en Windows pierden los no-ASCII | Cliente usa `--data-binary @tmpfile` + `Content-Type: charset=utf-8` (todo `tw_post_v*`/`tw_put_v*`) |
+| `POST /projects.json` con `start-date` solo falla — requiere también `end-date` | Pasar ambas o ninguna |
+| Cuando una tasklist queda 100% completed, sus tasks no aparecen en listings (`/projects/{id}/tasks.json`, `/tasklists/{id}/tasks.json`, `?includeCompletedTasks=true`, `?filter=all`, etc.) — sí accesibles por id directo y en la UI bajo "Completed task lists" | Mantener cache local de IDs si hay que iterar histórico |
+| `DELETE` en bash loop con lista pre-fetchada: solo el primer call funciona, el resto devuelve HTTP 000 (connection failed) — incluso con throttling | Traer un ID por iteración del API en cada vuelta del loop, no procesar la lista completa de una |
+| Rate limit visible en header `x-ratelimit-limit: 150 / 60s` | El cliente respeta esto; un sleep 0.4s entre DELETEs es prudente |
 
 ## Comandos del skill (planificados)
 
