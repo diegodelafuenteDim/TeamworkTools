@@ -1,0 +1,30 @@
+{
+  "responsable": { "id": 677620, "nombre": "Diego De La Fuente" },
+  "equipo": [
+    { "id": 678474, "nombre": "Ariel Molina" },
+    { "id": 717576, "nombre": "Camila Santana" },
+    { "id": 677620, "nombre": "Diego De La Fuente" },
+    { "id": 678476, "nombre": "Enrique Cascone" },
+    { "id": 701171, "nombre": "Ezequiel Martinez" },
+    { "id": 678477, "nombre": "Federico Bacchi" },
+    { "id": 703740, "nombre": "Franco More" },
+    { "id": 678475, "nombre": "Ignacio Rosato" },
+    { "id": 690466, "nombre": "Ivan Daniliuk" },
+    { "id": 678478, "nombre": "Jonathan De Donato" },
+    { "id": 677025, "nombre": "Mariano Palazzini" },
+    { "id": 686035, "nombre": "Walter Rodriguez" }
+  ],
+  "fueraDeAlcance": [
+    { "id": 692697, "nombre": "Martin Rzeszut", "motivo": "Equipo de Infra (no usa Teamwork)" },
+    { "id": 678479, "nombre": "Jessica Degiovanni", "motivo": "No es del equipo de desarrollo. Crea tickets que el equipo resuelve. Sus creaciones cuentan como trabajo del equipo en reportes de volumen." },
+    { "id": 692694, "nombre": "Gabriela Barrios", "motivo": "Otro sector" },
+    { "id": 692698, "nombre": "Comunicaciones Dim", "motivo": "Cuenta departamental" },
+    { "id": 696269, "nombre": "Alex Spitzner", "motivo": "Otro sector" },
+    { "id": 713325, "nombre": "Eduardo Wydler", "motivo": "Otro sector" },
+    { "id": 691899, "nombre": "Julieta Ciare", "motivo": "Otro sector" },
+    { "id": 691900, "nombre": "Leonel Gimenez", "motivo": "Otro sector" },
+    { "id": 678600, "nombre": "Natalia Benitez", "motivo": "Otro sector" },
+    { "id": 680924, "nombre": "Alejandro Montaña", "motivo": "Collaborator, otro sector" },
+    { "id": 694138, "nombre": "Oscar Montaña", "motivo": "Otro sector" }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "categoriasIncluidas": [
+    { "id": 49782, "nombre": "Arquitectura" },
+    { "id": 49652, "nombre": "CRM/BOT" },
+    { "id": 48019, "nombre": "DATA" },
+    { "id": 48015, "nombre": "GESTION" },
+    { "id": 51077, "nombre": "GESTION INTERNA" },
+    { "id": 48506, "nombre": "HC" },
+    { "id": 48814, "nombre": "HC ODONTO" },
+    { "id": 49321, "nombre": "LIQ MEDICOS" },
+    { "id": 48029, "nombre": "NETAPP TURNOS" },
+    { "id": 48030, "nombre": "PACS" },
+    { "id": 48940, "nombre": "Portal Proovedores" },
+    { "id": 48031, "nombre": "SITIO DIM.COM.AR" },
+    { "id": 48027, "nombre": "TURNOS AGENDA MEDICOS" },
+    { "id": 48025, "nombre": "TURNOS APP" },
+    { "id": 48028, "nombre": "TURNOS FACTURACION" },
+    { "id": 48020, "nombre": "TURNOS HC" },
+    { "id": 48022, "nombre": "TURNOS INFORMES" },
+    { "id": 48023, "nombre": "TURNOS LABORATORIO" },
+    { "id": 48021, "nombre": "TURNOS PORTAL" },
+    { "id": 48026, "nombre": "TURNOS SERVICIOS" },
+    { "id": 48024, "nombre": "TURNOS TAG" },
+    { "id": 48352, "nombre": "VALIDACIONES ONLINE" }
+  ],
+  "categoriasExcluidas": [
+    { "id": 48274, "nombre": "SOPORTES INFRA", "motivo": "Equipo de Infra fuera de alcance" }
+  ],
+  "proyectosIncluirSiempre": [],
+  "proyectosExcluirSiempre": [
+    { "id": 1226714, "nombre": "deleted_1775484277321_CRM/BOT Propio", "motivo": "Proyecto eliminado" }
+  ],
+  "_comentario": "Solo se consideran proyectos con status=active. categoriasIncluidas + proyectosIncluirSiempre - categoriasExcluidas - proyectosExcluirSiempre = scope IT efectivo."
+}

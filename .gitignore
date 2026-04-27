@@ -1,0 +1,29 @@
+# Secretos: nunca commitear API keys ni credenciales
+secrets/*
+!secrets/.gitkeep
+!secrets/*.example
+*.env
+*.env.local
+
+# Salida de reportes (datos generados, regenerables)
+reports/
+
+# Cache local
+cache/
+.cache/
+
+# Archivos temporales
+*.tmp
+*.log
+*.bak
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
