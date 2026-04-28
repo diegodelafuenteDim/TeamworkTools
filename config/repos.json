@@ -1,0 +1,19 @@
+{
+  "_comentario": "Mapeo de repos locales a proyectos Teamwork. El skill teamwork-cargar-semana usa este archivo para saber a qué proyecto Teamwork van los tickets generados desde los commits de cada repo. Cuando se invoca desde un repo no mapeado, el skill pregunta al usuario y actualiza este archivo.",
+  "mapeos": [
+    {
+      "repoPath": "c:/Net 8/VideoRepository",
+      "teamworkProjectId": 1271590,
+      "teamworkProjectName": "Plataforma Llamadores",
+      "categoryId": 51078,
+      "categoryName": "PLATAFORMA LLAMADORES"
+    },
+    {
+      "repoPath": "c:/Net 8/LlamadorNew",
+      "teamworkProjectId": 1271590,
+      "teamworkProjectName": "Plataforma Llamadores",
+      "categoryId": 51078,
+      "categoryName": "PLATAFORMA LLAMADORES"
+    }
+  ]
+}
