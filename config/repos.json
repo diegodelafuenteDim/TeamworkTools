@@ -14,6 +14,13 @@
       "teamworkProjectName": "Plataforma Llamadores",
       "categoryId": 51078,
       "categoryName": "PLATAFORMA LLAMADORES"
+    },
+    {
+      "repoPath": "c:/Net 8/Turnos.Backend",
+      "teamworkProjectId": 1237561,
+      "teamworkProjectName": "Portal Dim",
+      "categoryId": 48021,
+      "categoryName": "TURNOS PORTAL"
     }
   ]
 }
