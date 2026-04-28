@@ -105,16 +105,13 @@ Si alguno aparece en los cambios, **ADVERTIR al usuario** y excluirlo del stagin
    git -C "c:/Net 8/TeamworkTools" add <archivo1> <archivo2> ...
    ```
 
-2. Crear el commit con HEREDOC para preservar formato:
+2. Crear el commit:
 
    ```bash
-   git -C "c:/Net 8/TeamworkTools" commit -m "$(cat <<'EOF'
-   tipo(scope): descripción del cambio
-
-   Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
-   EOF
-   )"
+   git -C "c:/Net 8/TeamworkTools" commit -m "tipo(scope): descripción del cambio"
    ```
+
+   Para mensajes multilínea usar HEREDOC, sin footer de co-autoría.
 
 3. Verificar que el commit fue exitoso:
 
@@ -168,4 +165,4 @@ Sin cambios pendientes en TeamworkTools.
 4. **NUNCA** `git reset --hard` ni `git checkout .`.
 5. **NUNCA** `--amend` — siempre commits nuevos.
 6. **SIEMPRE** mostrar diff y mensaje al usuario ANTES de commitear.
-7. **SIEMPRE** incluir footer `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>`.
+7. **NUNCA** incluir footer `Co-Authored-By: Claude` ni mencionar a Claude en los mensajes — el usuario es el único autor.
