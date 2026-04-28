@@ -27,3 +27,6 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# Claude Code: config local del usuario (no compartido)
+.claude/settings.local.json
